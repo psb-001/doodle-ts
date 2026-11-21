@@ -1,0 +1,73 @@
+{
+  "name": "doodle-ts",
+  "version": "0.1.0",
+  "description": "A native TypeScript port of the Doodle UI framework — retained view tree, vector canvas renderer, layout, input, animation, widgets and React bindings.",
+  "type": "module",
+  "license": "MIT",
+  "main": "./dist-lib/index.js",
+  "types": "./dist-lib/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist-lib/index.d.ts",
+      "import": "./dist-lib/index.js"
+    },
+    "./core": {
+      "types": "./dist-lib/index.d.ts",
+      "import": "./dist-lib/index.js"
+    },
+    "./react": {
+      "types": "./dist-lib/react/DoodleCanvas.d.ts",
+      "import": "./dist-lib/react/DoodleCanvas.js"
+    },
+    "./widgets": {
+      "types": "./dist-lib/widgets/widgets.d.ts",
+      "import": "./dist-lib/widgets/widgets.js"
+    }
+  },
+  "files": [
+    "dist-lib",
+    "README.md",
+    "LICENSE"
+  ],
+  "sideEffects": false,
+  "keywords": [
+    "doodle",
+    "kotlin",
+    "typescript",
+    "react",
+    "canvas",
+    "ui-framework",
+    "vector"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/psb-001/doodle-ts.git"
+  },
+  "homepage": "https://github.com/psb-001/doodle-ts#readme",
+  "bugs": "https://github.com/psb-001/doodle-ts/issues",
+  "scripts": {
+    "dev": "vite --config vite.config.ts",
+    "dev:site": "vite --config vite.site.config.ts",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "test": "vitest run",
+    "build": "tsc -p tsconfig.build.json && node scripts/fix-esm.mjs",
+    "build:demo": "vite build --config vite.config.ts",
+    "build:site": "vite build --config vite.site.config.ts",
+    "preview:site": "vite-node site/preview.ts",
+    "check": "npm run typecheck && npm run test && npm run build && npm run build:site"
+  },
+  "peerDependencies": {
+    "react": ">=19",
+    "react-dom": ">=19"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "typescript": "^5.9.3",
+    "vite": "^7.3.7",
+    "vitest": "^3.2.7"
+  }
+}
