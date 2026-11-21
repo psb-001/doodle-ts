@@ -79,7 +79,7 @@ class HeroSection extends Section {
 
   override layout(): void {
     const pad = this.width >= 900 ? 64 : 24;
-    this.cta.bounds = rect(pad, (this.width >= 900 ? 420 : 500), this.cta.preferredSize().width, 46);
+    this.cta.bounds = rect(pad, this.width >= 900 ? 490 : 540, this.cta.preferredSize().width, 46);
   }
 
   override render(canvas: Canvas): void {
@@ -104,16 +104,18 @@ class HeroSection extends Section {
     }
     canvas.circle(point(cx, cy), 6, C.white);
 
-    canvas.text("doodle", point(pad, 96), { font: { size: 20, weight: 800 }, color: C.white });
-    canvas.text("A pure Kotlin, UI framework", point(pad, wide ? 230 : 190), {
-      font: { size: Math.min(62, Math.max(36, w * 0.048)), weight: 800 },
+    const titleSize = Math.min(60, Math.max(36, w * 0.046));
+    const titleY = wide ? 210 : 180;
+    canvas.text("doodle·ts", point(pad, 96), { font: { size: 20, weight: 800 }, color: C.white });
+    drawLines(canvas, ["A native TypeScript", "UI framework"], pad, titleY, titleSize * 1.02, {
+      font: { size: titleSize, weight: 800 },
       color: C.white,
     });
     paragraph(
       canvas,
-      "Build beautiful, modern apps entirely in Kotlin. Its render model is intuitive yet powerful, making it easy to achieve complex UIs with pixel level precision and layouts.",
+      "Build beautiful, modern apps entirely in TypeScript. Its render model is intuitive yet powerful, making it easy to achieve complex UIs with pixel level precision and layouts.",
       pad,
-      wide ? 292 : 250,
+      titleY + titleSize * 2.5,
       wide ? 470 : Math.max(240, w - 2 * pad),
       24,
       C.white.withAlpha(0.92),
@@ -122,16 +124,16 @@ class HeroSection extends Section {
   }
 }
 
-/** The three feature columns from the Doodle docs home page, verbatim. */
+/** Three feature columns describing this web-first implementation. */
 class FeaturesSection extends Section {
   private readonly items = [
     {
       title: "One Language",
-      body: "Write your app once, entirely in Kotlin and forget about the underlying platform.",
+      body: "Write your app once, entirely in TypeScript and forget about the underlying platform.",
     },
     {
-      title: "Many Platforms",
-      body: "Deploy the same app to the Web (via JavaScript or WASM) or Desktop (via the JVM).",
+      title: "Web First",
+      body: "Render to a browser canvas with no DOM dependency. The same scene graph renders to SVG in headless tests.",
     },
     {
       title: "Your Creativity",
@@ -161,24 +163,25 @@ class FeaturesSection extends Section {
   }
 }
 
-/** The README Hello World sample, drawn as a code card. */
+/** A TypeScript Hello World sample, drawn as a code card. */
 class CodeSection extends Section {
   private readonly lines = [
-    "import io.nacular.doodle.application.application",
-    "import io.nacular.doodle.core.view",
-    "import io.nacular.doodle.drawing.Color.Companion.Black",
-    "import io.nacular.doodle.drawing.text",
+    "import { Canvas2D, Display, View, rect, point, doodle } from \"doodle-ts\";",
     "",
-    "fun main() {",
-    "    application {",
-    "        display += view {",
-    "            size   = display.size",
-    "            render = {",
-    "                text(\"Hello, world!\", color = Black)",
-    "            }",
-    "        }",
-    "    }",
-    "}",
+    "const canvas = new Canvas2D(element, devicePixelRatio);",
+    "const display = new Display(canvas);",
+    "",
+    "const root = new View(rect(0, 0, 800, 400));",
+    "root.background = doodle.paper;",
+    "root.render = c => {",
+    "  c.circle(point(400, 160), 70, doodle.primary);",
+    "  c.text(\"Hello, world!\", point(400, 270), {",
+    "    color: doodle.ink, align: \"center\"",
+    "  });",
+    "};",
+    "",
+    "display.add(root);",
+    "display.render();",
   ];
 
   override measure(width: number): number {
@@ -196,7 +199,7 @@ class CodeSection extends Section {
     const cardW = this.width - 2 * pad;
     const cardH = this.lines.length * 19 + 36;
     canvas.rect({ x: cardX, y: cardY, width: cardW, height: cardH }, C.content, undefined, 8);
-    canvas.text("HELLO WORLD.KT", point(cardX + 18, cardY + 24), { font: mono, color: C.faint });
+    canvas.text("HELLO WORLD.TS", point(cardX + 18, cardY + 24), { font: mono, color: C.faint });
     this.lines.forEach((line, index) => {
       const y = cardY + 52 + index * 19;
       const isCall = line.includes("application") || line.includes("render") || line.includes("display +=");
@@ -205,12 +208,12 @@ class CodeSection extends Section {
   }
 }
 
-/** The platforms named in the README badges and docs (JS, WASM, JVM). */
+/** The render targets shipped by this web-first implementation. */
 class PlatformsSection extends Section {
   private readonly items = [
-    { title: "Web", sub: "JavaScript" },
-    { title: "Web", sub: "WebAssembly" },
-    { title: "Desktop", sub: "JVM" },
+    { title: "Browser", sub: "Canvas2D renderer" },
+    { title: "Headless", sub: "SVG renderer" },
+    { title: "React", sub: "DoodleCanvas host" },
   ];
 
   override measure(width: number): number {
@@ -314,8 +317,8 @@ class FooterSection extends Section {
     canvas.fill({ x: 0, y: 0, width: this.width, height: this.height }, C.ink);
     const pad = this.width >= 900 ? 64 : 24;
     canvas.text("doodle", point(pad, 44), { font: { size: 18, weight: 800 }, color: C.white });
-    canvas.text("A pure Kotlin, UI framework for the Web and Desktop", point(pad, 72), { font: { size: 13 }, color: C.faint });
-    canvas.text("Copyright © 2026 Nacular", point(this.width - pad, 58), { font: { size: 12 }, color: C.faint, align: "right" });
+    canvas.text("A native TypeScript UI framework for the web", point(pad, 72), { font: { size: 13 }, color: C.faint });
+    canvas.text("doodle-ts, MIT licensed", point(this.width - pad, 58), { font: { size: 12 }, color: C.faint, align: "right" });
   }
 }
 

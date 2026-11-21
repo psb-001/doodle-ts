@@ -130,6 +130,6 @@ export function createMotion(_context: ApplicationContext): Application {
 
 export const demos = [
   { id: "hello", label: "Hello world", create: createHello, note: "A label, a custom View and two looping animators." },
-  { id: "widgets", label: "Widget catalog", create: createWidgets, note: "TextField, Checkbox, Slider and Button — all drawn on canvas." },
+  { id: "widgets", label: "Widget catalog", create: createWidgets, note: "TextField, Checkbox, Slider and Button, all drawn on canvas." },
   { id: "motion", label: "Motion", create: createMotion, note: "Four views sharing one clock, each with its own angle." },
 ] as const;

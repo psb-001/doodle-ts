@@ -71,7 +71,7 @@ export class Clock {
     this.last = undefined;
   }
 
-  /** Advance all listeners manually — useful in tests and headless renders. */
+  /** Advance all listeners manually, useful in tests and headless renders. */
   tick(deltaSeconds: number): void {
     this._delta = deltaSeconds;
     this._time += deltaSeconds;

@@ -63,7 +63,7 @@ export function App(): React.JSX.Element {
       <section style={styles.log}>
         <div style={styles.logTitle}>input events</div>
         {events.length === 0 ? (
-          <div style={styles.logEmpty}>Interact with the canvas — clicks, drags and keystrokes land here.</div>
+          <div style={styles.logEmpty}>Interact with the canvas: clicks, drags and keystrokes land here.</div>
         ) : (
           events.map((event, index) => (
             <div key={`${event}-${index}`} style={styles.logRow}>
@@ -74,7 +74,7 @@ export function App(): React.JSX.Element {
       </section>
 
       <footer style={styles.footer}>
-        Engine: view tree · vector canvas · layout · input · animation · widgets · React bindings — all in <code>src/</code>.
+        Engine: view tree · vector canvas · layout · input · animation · widgets · React bindings, all in <code>src/</code>.
       </footer>
     </main>
   );

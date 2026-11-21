@@ -1,7 +1,7 @@
 import { Color } from "./color";
 
 /**
- * Doodle brand tokens — sourced from the upstream project, not invented:
+ * Doodle brand tokens, sourced from the upstream project and not invented:
  *   docs/img/doodle.svg   wordmark #000000, details #FFFFFF
  *   docs site stylesheet  --ifm-color-gray-100   #f5f6f7
  *                          --ifm-color-gray-900   #1c1e21

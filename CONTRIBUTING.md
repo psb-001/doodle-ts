@@ -14,7 +14,7 @@ npm run check
 | Change | Location |
 | --- | --- |
 | Engine (geometry, canvas, view, layout, input, animation) | `src/core/` |
-| Brand tokens | `src/core/tokens.ts` — do not hard-code palette values elsewhere |
+| Brand tokens | `src/core/tokens.ts`; do not hard-code palette values elsewhere |
 | Widgets | `src/widgets/` |
 | React host and hooks | `src/react/` |
 | Engine tests | `tests/engine.test.ts` |

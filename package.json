@@ -1,7 +1,7 @@
 {
   "name": "doodle-ts",
   "version": "0.1.0",
-  "description": "A native TypeScript port of the Doodle UI framework — retained view tree, vector canvas renderer, layout, input, animation, widgets and React bindings.",
+  "description": "A native TypeScript UI framework for the web: retained view tree, vector canvas renderer, layout, input, animation, widgets and React bindings.",
   "type": "module",
   "license": "MIT",
   "main": "./dist-lib/index.js",

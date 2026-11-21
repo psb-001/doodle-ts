@@ -39,11 +39,11 @@ describe("demo website", () => {
     display.render();
 
     const svg = canvas.svg;
-    expect(svg).toContain("A pure Kotlin, UI framework");
+    expect(svg).toContain("A native TypeScript UI framework");
     expect(svg).toContain("One Language");
-    expect(svg).toContain("Many Platforms");
+    expect(svg).toContain("Web First");
     expect(svg).toContain("Hello, world!");
-    expect(svg).toContain("Copyright © 2026 Nacular");
+    expect(svg).toContain("doodle-ts, MIT licensed");
     expect(svg).toContain("rgba(53, 120, 229, 1)");
     expect(display.views).toHaveLength(1);
     expect(svg.length).toBeGreaterThan(20000);

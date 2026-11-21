@@ -27,13 +27,13 @@ Dependencies point down only. `src/core` has no React import. `src/widgets` has 
 
 ## Rendering
 
-`View.draw()` applies the view transform, global alpha and clip, paints the background, calls the `render` hook, then recurses into children. The `render` hook receives a `Canvas` — it never touches the DOM.
+`View.draw()` applies the view transform, global alpha and clip, paints the background, calls the `render` hook, then recurses into children. The `render` hook receives a `Canvas`. It never touches the DOM.
 
 There are three `Canvas` implementations:
 
-- `Canvas2D` — browser backend, DPR-aware, used by `mountApplication`
-- `MeasuringCanvas` — no-op backend used for text measurement and tests
-- `SvgCanvas` — headless backend that records the same draw calls as SVG, used by tests and the preview generator
+- `Canvas2D`: browser backend, DPR-aware, used by `mountApplication`
+- `MeasuringCanvas`: no-op backend used for text measurement and tests
+- `SvgCanvas`: headless backend that records the same draw calls as SVG, used by tests and the preview generator
 
 Because all three implement the same contract, the whole demo website can be rendered without a browser and asserted on as text.
 
